@@ -5,6 +5,7 @@
 - Go
 - Docker
 - TablePlus
+- golang-migrate (`brew install golang-migrate`)
 
 ## Database structure definition
 
@@ -71,3 +72,20 @@ Note: According to https://hub.docker.com/_/postgres, the PostgreSQL image sets 
 
 - Just copy & paste the sql that already exported from dbdiagram.io, and `Cmd + Enter`.
 - When you need to delete the tables, don't forget to choose `Cascade`, then `Cmd + S`.
+
+## golang-migrate
+
+Initiate the db directory in our projects directory:
+```
+mkdir -p db/migration
+```
+
+Run this create to prepare database scheme migration:
+```
+migrate create -ext sql -dir db/migration -seq init_schema
+```
+
+For the first time, just copy and paste the exported sql (from dbdiagram.io) to `up` schema, and write drop table script on `down` schema.
+
+Notes:
+- When you drop the tables, always remember, drop the table with foreign key constraint first. For example, in our case, `transfers` and `account_mutations` must drop first, and the `accounts` table must drop in the last order, because there's a foreign key constraint in `transfers` and `account_mutations`.
