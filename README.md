@@ -45,12 +45,26 @@ Run a container:
 docker run --name postgres16 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:16-alpine
 ```
 
-(Optional) Try this to run command in Postgres container:
+### Test Postgres Installation
+
+And you can do this after run Postgres container:
 ```
 docker exec -it postgres16 psql -U root
 ```
 
-And do this in 
+And you can see this on your CLI:
+```
+psql (16.3)
+Type "help" for help.
+
+root=#
+```
+
+Try to run this simple query:
+```
+select now();
+```
+
 Note: According to https://hub.docker.com/_/postgres, the PostgreSQL image sets up `trust` authentication locally so you may notice a password is not required when connecting from `localhost` (inside the same container). However, a password will be required if connecting from a different host/container.
 
 ## Notes about TablePlus
