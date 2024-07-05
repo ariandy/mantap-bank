@@ -1,3 +1,3 @@
-DROP TABLE IF EXIST transfers;
-DROP TABLE IF EXIST account_mutations;
-DROP TABLE IF EXIST accounts;
+DROP TABLE IF EXISTS transfers;
+DROP TABLE IF EXISTS account_mutations;
+DROP TABLE IF EXISTS accounts;
